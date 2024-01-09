@@ -1,0 +1,20 @@
+.calendar-years{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+.calendar-years-container{
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    max-width: 900px;
+    .calendar-mounth-container{
+        width: 100%;
+        min-height: 140px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+    }
+}
+}

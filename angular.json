@@ -96,6 +96,39 @@
           }
         }
       }
+    },
+    "@ghazaly/calendar": {
+      "projectType": "library",
+      "root": "projects/ghazaly/calendar",
+      "sourceRoot": "projects/ghazaly/calendar/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "projects/ghazaly/calendar/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/ghazaly/calendar/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/ghazaly/calendar/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "tsConfig": "projects/ghazaly/calendar/tsconfig.spec.json",
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ]
+          }
+        }
+      }
     }
   }
 }
