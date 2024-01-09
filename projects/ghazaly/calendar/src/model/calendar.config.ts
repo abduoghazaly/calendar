@@ -1,9 +1,36 @@
+import { CalendarStyle } from './enum';
+
 export interface CalendarConfig {
+  showStyle: CalendarStyle;
+
   events?: CalendarEvents[];
-  data?: {
-    targetDay: string;
+  date?: {
+    targetDay?: number;
     targetYear?: number;
-    targetMonth?: string;
+    targetMonth?: number;
+  };
+
+  yearsStyleOptions?: {
+    months?: CalendarMonths[];
+    monthsStyle?: {
+      border?: string;
+      borderRadius?: string;
+    };
+    monthsTitleStyle?: {
+      color?: string;
+      fontSize?: string;
+      fontStyle?: string;
+      fontWeight?: string;
+    };
+    monthsSubTitleStyle?: {
+      color?: string;
+      fontSize?: string;
+      fontStyle?: string;
+      fontWeight?: string;
+    };
+  };
+  monthsStyleOption?: {
+    weeks?: string[];
   };
 
   theme?: {
@@ -15,9 +42,7 @@ export interface CalendarConfig {
   };
 
   controlBTN?: {
-    borderBottomColor?: string;
-    borderBottomWidth?: string;
-
+    showControlBTN?: boolean;
     btn?: {
       width?: string;
       padding?: string;
@@ -37,8 +62,8 @@ export interface CalendarConfig {
   };
 
   header?: {
-    borderBottomColor?: string;
-    borderBottomWidth?: string;
+    borderTopColor?: string;
+    borderTopWidth?: string;
 
     height?: string;
     titleOptions?: {
@@ -62,3 +87,8 @@ export interface CalendarConfig {
 }
 
 export interface CalendarEvents {}
+
+export interface CalendarMonths {
+  title?: string;
+  subTitle?: string[];
+}

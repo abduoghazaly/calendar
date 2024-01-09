@@ -1,7 +1,41 @@
 <div class="calendar-years">
   <div class="calendar-years-container">
-    <ng-container *ngFor="let item of [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]">
-      <div class="calendar-month-container">{{ item }}</div>
+    <ng-container
+      *ngFor="let month of config.yearsStyleOptions?.months; let i = index"
+    >
+      <div
+        class="calendar-month-container"
+        [ngStyle]="{
+          border: config.yearsStyleOptions?.monthsStyle?.border,
+          'border-radius': config.yearsStyleOptions?.monthsStyle?.borderRadius
+        }"
+        (click)="selectMonth(i)"
+      >
+        <div
+          class="calender-month-title"
+          [ngStyle]="{
+          color: config.yearsStyleOptions?.monthsTitleStyle?.color,
+          'font-size': config.yearsStyleOptions?.monthsTitleStyle?.fontSize,
+          'font-weight': config.yearsStyleOptions?.monthsTitleStyle?.fontWeight,
+          'font-style': config.yearsStyleOptions?.monthsTitleStyle?.fontStyle,
+        }"
+        >
+          {{ month.title }}
+        </div>
+        <ng-container *ngFor="let subTitle of month.subTitle">
+          <div
+            class="calendar-month-subTitle"
+            [ngStyle]="{
+            color: config.yearsStyleOptions?.monthsSubTitleStyle?.color,
+            'font-size': config.yearsStyleOptions?.monthsSubTitleStyle?.fontSize,
+            'font-weight': config.yearsStyleOptions?.monthsSubTitleStyle?.fontWeight,
+            'font-style': config.yearsStyleOptions?.monthsSubTitleStyle?.fontStyle,
+          }"
+          >
+            {{ subTitle }}
+          </div>
+        </ng-container>
+      </div>
     </ng-container>
   </div>
 </div>

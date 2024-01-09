@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { CalendarConfig } from '../../public-api';
 
 @Component({
   selector: 'lib-calendar-years',
@@ -8,4 +9,11 @@ import { Component } from '@angular/core';
   templateUrl: './calendar-years.component.html',
   styleUrl: './calendar-years.component.scss',
 })
-export class CalendarYearsComponent {}
+export class CalendarYearsComponent {
+  @Input('config') config!: CalendarConfig;
+  @Output('monthSelected') monthSelected = new EventEmitter<number>();
+
+  selectMonth(date: number) {
+    this.monthSelected.emit(date);
+  }
+}

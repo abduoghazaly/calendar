@@ -3,6 +3,10 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    border-width: 0;
+
+
+
 .calendar-years-container{
     width: 100%;
     display: grid;
@@ -12,9 +16,25 @@
         width: 100%;
         min-height: 140px;
         display: flex;
+        flex-direction: column;
         justify-content: center;
         align-items: center;
-
+        border: 1px solid #C7C7C7;
+        .calender-month-title{
+            color: #000;
+            font-size: 32px;
+            font-style: normal;
+            font-weight: 700;
+            text-transform: capitalize; 
+            margin-block:16px ;
+        }
+        .calendar-month-subTitle{
+            color:  #B286FD ;
+            font-size: 16px;
+            font-style: normal;
+            font-weight: 600;
+            text-transform: capitalize; 
+        }
     }
 }
 }

@@ -21,9 +21,7 @@ transition: all ease-out 650ms;
     display: flex; 
     justify-content: center;
     border-width: 0;
-    border-style: solid;
-    border-bottom-color:#D9DDE0;
-    border-bottom-width:1px;
+
 
      .calendar-container-control-title{
         width: 150px;
@@ -64,8 +62,8 @@ transition: all ease-out 650ms;
        border-style: solid;
        height:56px;
        border-width: 0;
-       border-bottom-color:#D9DDE0;
-       border-bottom-width:1px;
+       border-top-color:#D9DDE0;
+       border-top-width:1px;
     
      .calendar-header-title{      
         width:150px;
@@ -87,6 +85,7 @@ transition: all ease-out 650ms;
 
          .calendar-header-year-title{
             cursor: pointer;
+            text-transform: capitalize;
         }
 
          .calendar-header-year-beforeBTN , & .calendar-header-year-afterBTN{

@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import { CalendarComponent } from '../../projects/ghazaly/calendar/src/public-api';
 import { CalendarConfig } from '../../projects/ghazaly/calendar/src/model/calendar.config';
+import { CalendarStyle } from '../../projects/ghazaly/calendar/src/model/enum';
 @Component({
   selector: 'app-root',
   standalone: true,
@@ -14,10 +15,58 @@ export class AppComponent {
   title = 'calendar';
 
   calendarConfig: CalendarConfig = {
-    data: {
-      targetDay: '2024-01-04T11:37:03.820Z',
-      targetMonth: 'January',
+    showStyle: CalendarStyle.weeks,
+    date: {
+      targetDay: 1,
+      targetMonth: 0,
       targetYear: 2023,
+    },
+
+    yearsStyleOptions: {
+      months: [
+        {
+          title: 'January',
+          subTitle: ['3 sessions', '2 work shops'],
+        },
+        {
+          title: 'February',
+          subTitle: ['3 sessions'],
+        },
+        {
+          title: 'March',
+          subTitle: ['3 sessions'],
+        },
+        {
+          title: 'April',
+          subTitle: ['3 sessions'],
+        },
+        { title: 'May' },
+        {
+          title: 'June',
+          subTitle: ['358 sessions', '2124 work shops', '999 meeting'],
+        },
+        { title: 'July', subTitle: [''] },
+        {
+          title: 'August',
+          subTitle: ['4 work shops'],
+        },
+        {
+          title: 'September',
+          subTitle: ['4 work shops'],
+        },
+        {
+          title: 'October',
+          subTitle: ['3 sessions', '2 work shops', '999 meeting'],
+        },
+        {
+          title: 'November',
+          subTitle: ['3 sessions', '2 work shops', '999 meeting'],
+        },
+        {
+          title: 'December',
+          subTitle: ['999 meeting'],
+        },
+      ],
     },
 
     theme: {
@@ -27,7 +76,9 @@ export class AppComponent {
         secondary: '#B286FD',
       },
     },
+
     controlBTN: {
+      showControlBTN: true,
       btn: {
         titleOption: {
           title: 'MY Calendar',
@@ -39,8 +90,8 @@ export class AppComponent {
     },
 
     header: {
-      borderBottomColor: '#D9DDE0',
-      borderBottomWidth: '1px',
+      borderTopColor: '#D9DDE0',
+      borderTopWidth: '1px',
       height: '56px',
       titleOptions: {
         title: 'My Calendar',
@@ -61,4 +112,11 @@ export class AppComponent {
       },
     },
   };
+
+  calendarStyleUpdate(value: any) {
+    console.log('style', value);
+  }
+  calendarDateUpdate(value: any) {
+    console.log('date', value);
+  }
 }
