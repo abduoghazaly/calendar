@@ -30,7 +30,7 @@ export interface CalendarConfig {
     };
   };
   monthsStyleOption?: {
-    weeks?: string[];
+    weeks?: weeks[];
     timeFrame?: timeFrame[];
     sideBarStyle?: {
       width?: string;
@@ -100,4 +100,22 @@ export interface CalendarMonths {
 export interface timeFrame {
   title: string;
   timeFrame: number;
+}
+export interface weeks {
+  title?: string;
+  date?: string;
+  events?: { [key: string]: weeksEvent };
+}
+
+export interface weeksEvent {
+  hour?: number;
+  min?: number;
+  durationInMin?: number;
+  details?: {
+    title?: string;
+    image?: string;
+    name?: string;
+    start?: string;
+    end?: string;
+  };
 }

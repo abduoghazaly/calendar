@@ -18,7 +18,7 @@
     ></div>
     <ng-container *ngFor="let time of config.monthsStyleOption?.timeFrame">
       <div
-        class="calendar-week-times"
+        class="calendar-week-times time-shifting"
         [ngStyle]="{
           flex: time.timeFrame ? '0 0 ' + time.timeFrame + 'px' : '0 0 60px'
         }"
@@ -28,4 +28,40 @@
       </div>
     </ng-container>
   </div>
+  <ng-container *ngFor="let day of config.monthsStyleOption?.weeks">
+    <div class="calendar-week-row-container">
+      <div
+        class="calendar-week-side-title-grid"
+        [ngStyle]="{
+          flex: config.monthsStyleOption?.sideBarStyle?.width
+            ? '0 0 ' + config.monthsStyleOption?.sideBarStyle?.width + 'px'
+            : '0 0 132px'
+        }"
+      ></div>
+      <div
+        class="calendar-week-side-title-grid side-sticky"
+        [ngStyle]="{
+          width: config.monthsStyleOption?.sideBarStyle?.width
+            ? config.monthsStyleOption?.sideBarStyle?.width + 'px'
+            : '132px'
+        }"
+      >
+        <span>
+          {{ day.title }}
+        </span>
+        <span>
+          {{ day.date | date : "d/M" }}
+        </span>
+      </div>
+
+      <ng-container *ngFor="let time of config.monthsStyleOption?.timeFrame">
+        <div
+          class="calendar-week-times-grid"
+          [ngStyle]="{
+            flex: time.timeFrame ? '0 0 ' + time.timeFrame + 'px' : '0 0 60px'
+          }"
+        ></div>
+      </ng-container>
+    </div>
+  </ng-container>
 </div>

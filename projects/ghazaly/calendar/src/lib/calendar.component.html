@@ -14,7 +14,7 @@
     <div
       class="calendar-container-control-BTN"
       [ngStyle]="{
-        width: config.controlBTN?.btn?.width,
+        width: config.controlBTN?.btn?.width ?? 'auto',
         padding: config.controlBTN?.btn?.padding,
         'background-color': config.controlBTN?.btn?.backgroundColor,
         'border-radius': config.controlBTN?.btn?.borderRadius

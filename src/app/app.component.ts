@@ -96,6 +96,15 @@ export class AppComponent {
         { title: '22:00', timeFrame: 60 },
         { title: '23:00', timeFrame: 60 },
       ],
+      weeks: [
+        { date: '2024-01-07T00:00:00.000Z', title: 'Saturday', events: {} },
+        { date: '2024-01-08T00:00:00.000Z', title: 'Sunday', events: {} },
+        { date: '2024-01-09T00:00:00.000Z', title: 'Monday', events: {} },
+        { date: '2024-01-10T00:00:00.000Z', title: 'Tuesday', events: {} },
+        { date: '2024-01-11T00:00:00.000Z', title: 'Wednesday', events: {} },
+        { date: '2024-01-12T00:00:00.000Z', title: 'Thursday', events: {} },
+        { date: '2024-01-13T00:00:00.000Z', title: 'Friday', events: {} },
+      ],
     },
 
     theme: {
