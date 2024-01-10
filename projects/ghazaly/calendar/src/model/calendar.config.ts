@@ -31,6 +31,10 @@ export interface CalendarConfig {
   };
   monthsStyleOption?: {
     weeks?: string[];
+    timeFrame?: timeFrame[];
+    sideBarStyle?: {
+      width?: string;
+    };
   };
 
   theme?: {
@@ -91,4 +95,9 @@ export interface CalendarEvents {}
 export interface CalendarMonths {
   title?: string;
   subTitle?: string[];
+}
+
+export interface timeFrame {
+  title: string;
+  timeFrame: number;
 }

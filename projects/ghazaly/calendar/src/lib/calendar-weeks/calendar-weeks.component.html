@@ -1,1 +1,30 @@
-<div class="calendar-week-container">aaaaaaa</div>
+<div class="calendar-week-container">
+  <div class="calendar-week-row-container">
+    <div
+      class="calendar-week-side-title"
+      [ngStyle]="{
+        flex: config.monthsStyleOption?.sideBarStyle?.width
+          ? '0 0 ' + config.monthsStyleOption?.sideBarStyle?.width + 'px'
+          : '0 0 132px'
+      }"
+    ></div>
+    <div
+      class="calendar-week-side-title side-sticky"
+      [ngStyle]="{
+        width: config.monthsStyleOption?.sideBarStyle?.width
+          ? config.monthsStyleOption?.sideBarStyle?.width + 'px'
+          : '132px'
+      }"
+    ></div>
+    <ng-container *ngFor="let time of config.monthsStyleOption?.timeFrame">
+      <div
+        class="calendar-week-times"
+        [ngStyle]="{
+          flex: time.timeFrame ? '0 0 ' + time.timeFrame + 'px' : '0 0 60px'
+        }"
+      >
+        {{ time.title }}
+      </div>
+    </ng-container>
+  </div>
+</div>

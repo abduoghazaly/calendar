@@ -102,7 +102,7 @@
         @calendarControlAnimation
         *ngIf="config.showStyle == calendarStyleEnum.weeks"
       >
-        <lib-calendar-weeks></lib-calendar-weeks>
+        <lib-calendar-weeks [config]="config"></lib-calendar-weeks>
       </div>
       <div
         class="calendar-year"

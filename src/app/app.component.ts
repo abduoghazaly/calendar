@@ -69,6 +69,35 @@ export class AppComponent {
       ],
     },
 
+    monthsStyleOption: {
+      timeFrame: [
+        { title: '00:00', timeFrame: 60 },
+        { title: '01:00', timeFrame: 60 },
+        { title: '02:00', timeFrame: 60 },
+        { title: '03:00', timeFrame: 60 },
+        { title: '04:00', timeFrame: 60 },
+        { title: '05:00', timeFrame: 60 },
+        { title: '06:00', timeFrame: 60 },
+        { title: '07:00', timeFrame: 60 },
+        { title: '08:00', timeFrame: 60 },
+        { title: '09:00', timeFrame: 60 },
+        { title: '10:00', timeFrame: 60 },
+        { title: '11:00', timeFrame: 60 },
+        { title: '12:00', timeFrame: 60 },
+        { title: '13:00', timeFrame: 60 },
+        { title: '14:00', timeFrame: 60 },
+        { title: '15:00', timeFrame: 60 },
+        { title: '16:00', timeFrame: 60 },
+        { title: '17:00', timeFrame: 60 },
+        { title: '18:00', timeFrame: 60 },
+        { title: '19:00', timeFrame: 60 },
+        { title: '20:00', timeFrame: 60 },
+        { title: '21:00', timeFrame: 60 },
+        { title: '22:00', timeFrame: 60 },
+        { title: '23:00', timeFrame: 60 },
+      ],
+    },
+
     theme: {
       fontFamily: 'Arial, "Helvetica Neue", Helvetica, sans-serif',
       colors: {

@@ -4,4 +4,37 @@
     border-style: solid;
     border-top-width: 1px;
     border-top-color: #C7C7C7;
+
+    display: flex;
+    flex-direction: column;
+
+    width: 100%;
+    max-width: 100%;
+    height: 100%;
+    overflow: auto;
+    .calendar-week-row-container{
+        display: flex;
+        flex-direction: row;
+        
+        .calendar-week-side-title{
+            flex:0 0 132px;
+            height: 100%;
+        }
+        .calendar-week-times{
+            flex:0 0 60px;
+            height: 100%;
+        }
+        .side-sticky{
+            position: absolute;
+            inset-inline-start: 0;
+            background-color: red;
+            z-index: 2;
+            width: 132px;
+            height: auto;
+            min-height: 15px;
+        }
+
+    }
+
+
 }
