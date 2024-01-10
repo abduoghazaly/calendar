@@ -98,8 +98,9 @@ export interface CalendarMonths {
 }
 
 export interface timeFrame {
-  title: string;
-  timeFrame: number;
+  title?: string;
+  timeFrame?: number;
+  hour?: string;
 }
 export interface weeks {
   title?: string;
@@ -108,8 +109,8 @@ export interface weeks {
 }
 
 export interface weeksEvent {
-  hour?: number;
-  min?: number;
+  hour?: string;
+  min?: string;
   durationInMin?: number;
   details?: {
     title?: string;

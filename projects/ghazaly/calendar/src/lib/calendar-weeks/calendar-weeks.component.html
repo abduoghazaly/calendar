@@ -58,9 +58,19 @@
         <div
           class="calendar-week-times-grid"
           [ngStyle]="{
-            flex: time.timeFrame ? '0 0 ' + time.timeFrame + 'px' : '0 0 60px'
+            flex: time.timeFrame ? '0 0 ' + time.timeFrame + 'px' : '0 0 60px',
+            'max-width': time.timeFrame ? time.timeFrame + 'px' : '60px',
           }"
-        ></div>
+        >
+          <ng-container *ngIf="day.events?.[time?.hour ?? 0]">
+            <div
+              class="calendar-week-event"
+              [ngStyle]="{width: day.events?.[time?.hour ?? 0]?.durationInMin + 'px'}"
+            >
+              {{day.events?.[time?.hour ?? 0]?.details?.title }}
+            </div>
+          </ng-container>
+        </div>
       </ng-container>
     </div>
   </ng-container>
