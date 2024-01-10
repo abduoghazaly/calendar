@@ -15,23 +15,44 @@
     .calendar-week-row-container{
         display: flex;
         flex-direction: row;
-        
+        padding-inline-start: 30px;
+        border-bottom: 1px solid #D9DDE0;
         .calendar-week-side-title{
             flex:0 0 132px;
             height: 100%;
+            min-height: 48px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
         .calendar-week-times{
             flex:0 0 60px;
             height: 100%;
+            min-height: 48px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            inset-inline-start: -30px;
+
+            .small-v-line{
+                width: 1px;
+                height: 8px;
+                position: absolute;
+                bottom: 0;
+                background-color: #D9DDE0;
+            }
         }
         .side-sticky{
             position: absolute;
             inset-inline-start: 0;
-            background-color: red;
+            // background-color: red;
+            border-inline-end: 1px solid #D9DDE0;
+            background-color: #fff;
             z-index: 2;
             width: 132px;
             height: auto;
-            min-height: 15px;
+  
         }
 
     }
