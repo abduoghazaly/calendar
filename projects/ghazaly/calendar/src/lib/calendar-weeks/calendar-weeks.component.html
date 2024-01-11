@@ -33,11 +33,17 @@
           'inset-inline-start':
             '-' +
             (config.monthsStyleOption?.timeFrameStyle?.widthRatio ?? 1) * 30 +
-            'px'
+            'px',
+          'background-color': isTimeNow(time)
+            ? config.theme?.colors?.primary
+            : '#fff',
+          'color': isTimeNow(time)
+            ? '#fff'
+            : '#000',
         }"
       >
         {{ time.title }}
-        <div class="small-v-line"></div>
+        <div class="small-v-line" *ngIf="!isTimeNow(time)"></div>
       </div>
     </ng-container>
   </div>
@@ -170,6 +176,15 @@
               </div>
             </div>
           </ng-container>
+
+          <div
+            class="calendar-week-now"
+            *ngIf="isTimeNow(time)"
+            [ngStyle]="{
+              'inset-inline-start': timeNow.getMinutes() + 'px',
+              'background-color': config.theme?.colors?.primary
+            }"
+          ></div>
         </div>
       </ng-container>
     </div>

@@ -101,9 +101,9 @@ export class AppComponent {
           date: '2024-01-07T00:00:00.000Z',
           title: 'Saturday',
           events: {
-            '11': {
-              hour: '11',
-              min: '15',
+            '16': {
+              hour: '16',
+              min: '0',
               durationInMin: 150,
               details: {
                 title: 'OOP advanced',
@@ -149,7 +149,7 @@ export class AppComponent {
                 id: '56a4sd6asd216a5sd85a1sd',
               },
             },
-            '11': {
+            '16': {
               hour: '11',
               min: '30',
               durationInMin: 190,

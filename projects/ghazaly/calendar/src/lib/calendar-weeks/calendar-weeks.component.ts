@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { CalendarConfig } from '../../public-api';
+import { CalendarConfig, timeFrame } from '../../public-api';
 import { animate, style, transition, trigger } from '@angular/animations';
 
 @Component({
@@ -26,8 +26,24 @@ export class CalendarWeeksComponent {
   @Input('config') config!: CalendarConfig;
   @Output('eventBTNClicked') eventBTNClicked = new EventEmitter<string>();
 
+  timeNow: Date = new Date();
+
+  constructor() {
+    setInterval(() => {
+      this.timeNow = new Date();
+    }, 10000);
+  }
+
   eventBTN(event: MouseEvent, eventId?: string) {
     event.stopPropagation();
     this.eventBTNClicked.emit(eventId);
+  }
+
+  isTimeNow(time: timeFrame) {
+    return (
+      this.timeNow.getFullYear() == this.config.date?.targetYear &&
+      this.timeNow.getMonth() == this.config.date?.targetMonth &&
+      this.timeNow.getHours() == +(time?.hour ?? 0)
+    );
   }
 }

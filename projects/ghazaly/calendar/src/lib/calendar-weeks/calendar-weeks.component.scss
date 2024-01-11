@@ -61,6 +61,7 @@
       justify-content: center;
       align-items: start;
       border-inline-start: 1px solid #d9dde0;
+      position: relative;
 
       .calendar-week-event-container {
         display: flex;
@@ -165,6 +166,14 @@
             }
           }
         }
+      }
+      .calendar-week-now {
+        width: 2px;
+        height: 100%;
+        position: absolute;
+        inset-inline-start: -2px;
+        background-color: #000e47;
+        z-index: 1;
       }
     }
     .time-shifting {
