@@ -20,7 +20,14 @@
       <div
         class="calendar-week-times time-shifting"
         [ngStyle]="{
-          flex: time.timeFrame ? '0 0 ' + time.timeFrame + 'px' : '0 0 60px'
+          flex:
+            '0 0 ' +
+            (config.monthsStyleOption?.timeFrameStyle?.widthRatio ?? 1) * 60 +
+            'px',
+          'inset-inline-start':
+            '-' +
+            (config.monthsStyleOption?.timeFrameStyle?.widthRatio ?? 1) * 30 +
+            'px'
         }"
       >
         {{ time.title }}
@@ -28,6 +35,7 @@
       </div>
     </ng-container>
   </div>
+
   <ng-container *ngFor="let day of config.monthsStyleOption?.weeks">
     <div class="calendar-week-row-container">
       <div
@@ -58,16 +66,95 @@
         <div
           class="calendar-week-times-grid"
           [ngStyle]="{
-            flex: time.timeFrame ? '0 0 ' + time.timeFrame + 'px' : '0 0 60px',
-            'max-width': time.timeFrame ? time.timeFrame + 'px' : '60px',
+            flex:  '0 0 ' + ((config.monthsStyleOption?.timeFrameStyle?.widthRatio ?? 1) * 60) + 'px' ,
+            'max-width':  ((config.monthsStyleOption?.timeFrameStyle?.widthRatio ?? 1) * 60) + 'px' ,
+          
           }"
         >
           <ng-container *ngIf="day.events?.[time?.hour ?? 0]">
             <div
-              class="calendar-week-event"
-              [ngStyle]="{width: day.events?.[time?.hour ?? 0]?.durationInMin + 'px'}"
+              class="calendar-week-event-container"
+              [ngStyle]="{
+                 width: (day.events?.[time?.hour ?? 0]?.durationInMin ?? 0) * (config.monthsStyleOption?.timeFrameStyle?.widthRatio ?? 1) + 'px',
+                'margin-inline-start': +(day.events?.[time?.hour ?? 0]?.min ?? 0) * (config.monthsStyleOption?.timeFrameStyle?.widthRatio ?? 1) + 'px' ,
+                'z-index': day.events?.[time?.hour ?? 0]?.isShowDetails ? 10 : 1
+              }"
             >
-              {{day.events?.[time?.hour ?? 0]?.details?.title }}
+              <div
+                class="calendar-week-event"
+                [ngStyle]="{
+                    width: (day.events?.[time?.hour ?? 0]?.durationInMin ?? 0) * (config.monthsStyleOption?.timeFrameStyle?.widthRatio ?? 1) + 'px',
+                'background-color': day.events?.[time?.hour ?? 0]?.details?.bgColor,
+                'color': day.events?.[time?.hour ?? 0]?.details?.color,
+                'border-radius':  day.events?.[time?.hour ?? 0]?.details?.borderRadius,
+            }"
+                (click)="   day.events?.[time?.hour ?? 0]!.isShowDetails = !day.events?.[time?.hour ?? 0]?.isShowDetails"
+              >
+                <div class="calendar-week-event-title">
+                  {{day.events?.[time?.hour ?? 0]?.details?.title }}
+                </div>
+                <div
+                  class="calendar-week-event-BTN"
+                  [ngStyle]="{
+                  width: day.events?.[time?.hour ?? 0]?.btnStyle?.width ,
+                'border-radius':  day.events?.[time?.hour ?? 0]?.details?.borderRadius
+                }"
+                  (click)="eventBTN(day.events?.[time?.hour ?? 0]?.btnStyle?.id)"
+                >
+                  <img
+                    src
+                    [src]="day.events?.[time?.hour ?? 0]?.btnStyle?.img"
+                  />
+                  <span
+                    >{{ day.events?.[time?.hour ?? 0]?.btnStyle?.title }}</span
+                  >
+                </div>
+              </div>
+              <div
+                class="calendar-week-event-details-container"
+                [ngStyle]="{
+              width: (day.events?.[time?.hour ?? 0]?.durationInMin ?? 0) * (config.monthsStyleOption?.timeFrameStyle?.widthRatio ?? 1) + 'px',
+              bottom:  day.events?.[time?.hour ?? 0]?.details?.borderRadius,
+              'font-size': day.events?.[time?.hour ?? 0]?.details?.fontSize,
+              'font-weight': day.events?.[time?.hour ?? 0]?.details?.fontWeight,
+          }"
+              >
+                <div
+                  class="calendar-week-event-details"
+                  @calendarEventDetailsAnimation
+                  *ngIf="day.events?.[time?.hour ?? 0]?.isShowDetails"
+                  [ngStyle]="{
+                    'border-radius': '0 0 ' + day.events?.[time?.hour ?? 0]?.details?.borderRadius + ' ' + day.events?.[time?.hour ?? 0]?.details?.borderRadius ,
+              'color': day.events?.[time?.hour ?? 0]?.details?.detailsColor,
+              'border-color': day.events?.[time?.hour ?? 0]?.details?.bgColor,
+              'padding-top': day.events?.[time?.hour ?? 0]?.details?.borderRadius,
+              'box-shadow': 'inset 0 0 300px 300px ' + day.events?.[time?.hour ?? 0]?.details?.bgColor + '33'
+
+                  }"
+                >
+                  <div class="calendar-week-event-details-title">
+                    <img
+                      [src]="day.events?.[time?.hour ?? 0]?.details?.image"
+                      alt=""
+                    />
+                    <div class="calendar-week-event-details-title-name">
+                      {{ day.events?.[time?.hour ?? 0]?.details?.name }}
+                    </div>
+                  </div>
+                  <div class="calendar-week-event-details-title-time">
+                    <div class="calendar-week-event-details-title-time-day">
+                      {{ day.events?.[time?.hour ?? 0]?.details?.start | date:'M/d/yyyy' }}
+                    </div>
+                    <div
+                      class="calendar-week-event-details-title-time-duration"
+                    >
+                      {{ day.events?.[time?.hour ?? 0]?.details?.start | date:'HH:mm' }}
+                      -
+                      {{ day.events?.[time?.hour ?? 0]?.details?.end | date:'HH:mm' }}
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </ng-container>
         </div>

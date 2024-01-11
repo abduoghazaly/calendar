@@ -4,6 +4,7 @@ export interface CalendarConfig {
   showStyle: CalendarStyle;
 
   events?: CalendarEvents[];
+
   date?: {
     targetDay?: number;
     targetYear?: number;
@@ -34,6 +35,9 @@ export interface CalendarConfig {
     timeFrame?: timeFrame[];
     sideBarStyle?: {
       width?: string;
+    };
+    timeFrameStyle?: {
+      widthRatio?: number;
     };
   };
 
@@ -99,7 +103,6 @@ export interface CalendarMonths {
 
 export interface timeFrame {
   title?: string;
-  timeFrame?: number;
   hour?: string;
 }
 export interface weeks {
@@ -112,11 +115,24 @@ export interface weeksEvent {
   hour?: string;
   min?: string;
   durationInMin?: number;
+  isShowDetails?: boolean;
   details?: {
     title?: string;
     image?: string;
     name?: string;
     start?: string;
     end?: string;
+    bgColor?: string;
+    color?: string;
+    borderRadius?: string;
+    detailsColor?: string;
+    fontSize?: string;
+    fontWeight?: string;
+  };
+  btnStyle?: {
+    img?: string;
+    title?: string;
+    width?: string;
+    id?: string;
   };
 }
