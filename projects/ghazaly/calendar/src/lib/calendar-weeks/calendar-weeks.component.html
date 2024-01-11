@@ -181,7 +181,10 @@
             class="calendar-week-now"
             *ngIf="isTimeNow(time)"
             [ngStyle]="{
-              'inset-inline-start': timeNow.getMinutes() + 'px',
+              'inset-inline-start':
+                (config.monthsStyleOption?.timeFrameStyle?.widthRatio ?? 1) *
+                  timeNow.getMinutes() +
+                'px',
               'background-color': config.theme?.colors?.primary
             }"
           ></div>
