@@ -17,9 +17,9 @@ export class AppComponent {
   calendarConfig: CalendarConfig = {
     showStyle: CalendarStyle.weeks,
     date: {
-      targetDay: 1,
+      targetDay: 11,
       targetMonth: 0,
-      targetYear: 2023,
+      targetYear: 2024,
     },
 
     yearsStyleOptions: {
@@ -119,6 +119,7 @@ export class AppComponent {
                 img: '../assets/images/video.svg',
                 title: 'Exit',
                 width: '90px',
+                id: '56a4sd6asd216a5sd85a1sd',
               },
             },
           },
@@ -145,6 +146,7 @@ export class AppComponent {
                 img: '../assets/images/video.svg',
                 title: 'Exit',
                 width: '90px',
+                id: '56a4sd6asd216a5sd85a1sd',
               },
             },
             '11': {
@@ -165,6 +167,7 @@ export class AppComponent {
                 img: '../assets/images/video.svg',
                 title: 'Join',
                 width: '90px',
+                id: '56a4sd6asd216a5sd85a1sd',
               },
             },
           },
@@ -230,5 +233,9 @@ export class AppComponent {
   }
   calendarDateUpdate(value: any) {
     console.log('date', value);
+  }
+
+  calenderEventClicked(value: any) {
+    console.log('event click', value);
   }
 }

@@ -1,5 +1,11 @@
 <div class="calendar-week-container">
-  <div class="calendar-week-row-container">
+  <div
+    class="calendar-week-row-container"
+    [ngStyle]="{
+      'padding-inline-start':
+        (config.monthsStyleOption?.timeFrameStyle?.widthRatio ?? 1) * 30 + 'px'
+    }"
+  >
     <div
       class="calendar-week-side-title"
       [ngStyle]="{
@@ -37,7 +43,14 @@
   </div>
 
   <ng-container *ngFor="let day of config.monthsStyleOption?.weeks">
-    <div class="calendar-week-row-container">
+    <div
+      class="calendar-week-row-container"
+      [ngStyle]="{
+        'padding-inline-start':
+          (config.monthsStyleOption?.timeFrameStyle?.widthRatio ?? 1) * 30 +
+          'px'
+      }"
+    >
       <div
         class="calendar-week-side-title-grid"
         [ngStyle]="{
@@ -99,7 +112,7 @@
                   width: day.events?.[time?.hour ?? 0]?.btnStyle?.width ,
                 'border-radius':  day.events?.[time?.hour ?? 0]?.details?.borderRadius
                 }"
-                  (click)="eventBTN(day.events?.[time?.hour ?? 0]?.btnStyle?.id)"
+                  (click)="eventBTN($event,day.events?.[time?.hour ?? 0]?.btnStyle?.id)"
                 >
                   <img
                     src

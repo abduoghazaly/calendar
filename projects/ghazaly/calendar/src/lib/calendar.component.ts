@@ -29,6 +29,7 @@ export class CalendarComponent {
   @Input('config') config!: CalendarConfig;
   @Output() changeCalendarStyleEventEmitter = new EventEmitter<CalendarStyle>();
   @Output() changeCalendarDateEventEmitter = new EventEmitter<string>();
+  @Output() calenderEventClickedEmitter = new EventEmitter<string>();
 
   isCalendarShow: boolean = true;
   calendarStyleEnum = CalendarStyle;
@@ -95,6 +96,10 @@ export class CalendarComponent {
     date.setDate(this.config.date?.targetDay ?? new Date().getDate());
 
     this.changeCalendarDateEventEmitter.emit(date.toISOString());
+  }
+
+  eventBTNClicked(event: string) {
+    this.calenderEventClickedEmitter.emit(event);
   }
 }
 

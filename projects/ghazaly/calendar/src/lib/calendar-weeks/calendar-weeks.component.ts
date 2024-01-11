@@ -26,7 +26,8 @@ export class CalendarWeeksComponent {
   @Input('config') config!: CalendarConfig;
   @Output('eventBTNClicked') eventBTNClicked = new EventEmitter<string>();
 
-  eventBTN(eventId?: string) {
+  eventBTN(event: MouseEvent, eventId?: string) {
+    event.stopPropagation();
     this.eventBTNClicked.emit(eventId);
   }
 }
