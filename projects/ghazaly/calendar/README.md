@@ -1,24 +1,188 @@
-# Calendar
+# Calendar TimeLine
 
-This library was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.0.0.
+Calendar with time line for meetings and appointments.
 
-## Code scaffolding
+## Usage
 
-Run `ng generate component component-name --project calendar` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module --project calendar`.
-> Note: Don't forget to add `--project calendar` or else it will be added to the default project in your `angular.json` file. 
+**Component**
 
-## Build
+```
+  <gh-calendar
+    [config]="calendarConfig"
+    (changeCalendarStyleEventEmitter)="calendarStyleUpdate($event)"
+    (changeCalendarDateEmitter)="calendarDateUpdate($event)"
+    (changeCalendarMonthEmitter)="changeCalendarMonth($event)"
+    (changeCalendarWeekEmitter)="changeCalendarWeek($event)"
+    (calenderEventClickedEmitter)="calenderEventClicked($event)"
+  >
+  </gh-calendar>
 
-Run `ng build calendar` to build the project. The build artifacts will be stored in the `dist/` directory.
+```
 
-## Publishing
+**Module**
 
-After building your library with `ng build calendar`, go to the dist folder `cd dist/calendar` and run `npm publish`.
+```
+@Component({
+...
+  imports: [CalendarComponent , ...],
+})
 
-## Running unit tests
+```
 
-Run `ng test calendar` to execute the unit tests via [Karma](https://karma-runner.github.io).
+**Config**
 
-## Further help
+```
+export interface CalendarConfig {
+  showStyle: CalendarStyle; // view style [ Years,Weeks ]
+  date?: {
+    targetDay?: number;
+    targetYear?: number;
+    targetMonth?: number;
+    targetDate?: Date; // must be first day of the week
+  };
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+  yearsStyleOptions?: {
+    months?: CalendarMonths[]; // length must be 12
+    monthsStyle?: {
+      border?: string;
+      borderRadius?: string;
+    };
+    monthsTitleStyle?: {
+      color?: string;
+      fontSize?: string;
+      fontStyle?: string;
+      fontWeight?: string;
+    };
+    monthsSubTitleStyle?: {
+      color?: string;
+      fontSize?: string;
+      fontStyle?: string;
+      fontWeight?: string;
+    };
+  };
+  monthsStyleOption?: {
+    weeks?: weeks[]; // length must be 7
+    timeFrame?: timeFrame[]; must be every hour
+    sideBarStyle?: {
+      width?: string;
+    };
+    timeFrameStyle?: {
+      widthRatio?: number; // expands the timeline width
+    };
+  };
+
+  theme?: {
+    fontFamily?: string;
+    colors?: {
+      primary?: string;
+      secondary?: string;
+    };
+  };
+
+  controlBTN?: {
+    showControlBTN?: boolean;
+    btn?: {
+      width?: string;
+      padding?: string;
+      borderRadius?: string;
+      backgroundColor?: string;
+      titleOption?: {
+        title?: string;
+        color?: string;
+        fontSize?: string;
+        fontWeight?: string;
+      };
+      iconOption?: {
+        icon?: string;
+        padding?: string; // '5px 0 0 10px'
+      };
+    };
+  };
+
+  header?: {
+    borderTopColor?: string;
+    borderTopWidth?: string;
+
+    height?: string;
+    titleOptions?: {
+      title?: string;
+      Width?: string;
+      fontSize?: string;
+      fontWeight?: string;
+      color?: string;
+    };
+    beforeBTN?: {
+      icon?: string;
+      color?: string;
+      padding?: string;
+    };
+    afterBTN?: {
+      icon?: string;
+      color?: string;
+      padding?: string;
+    };
+  };
+  side?: {
+    beforeBTN?: {
+      icon?: string;
+      padding?: string;
+    };
+    afterBTN?: {
+      icon?: string;
+      padding?: string;
+    };
+  };
+}
+
+export interface CalendarMonths {
+  title?: string;
+  subTitle?: string[];
+}
+
+export interface timeFrame {
+  title?: string;
+  hour?: string;
+}
+export interface weeks {
+  title?: string;
+  date?: string;
+  events?: { [key: string]: weeksEvent };
+}
+
+export interface weeksEvent {
+  hour?: string;
+  min?: string;
+  durationInMin?: number;
+  isShowDetails?: boolean;
+  details?: {
+    title?: string;
+    image?: string;
+    name?: string;
+    start?: string;
+    end?: string;
+    bgColor?: string;
+    color?: string;
+    borderRadius?: string;
+    detailsColor?: string;
+    fontSize?: string;
+    fontWeight?: string;
+  };
+  btnStyle?: {
+    img?: string;
+    title?: string;
+    width?: string;
+    id?: string;
+  };
+}
+
+```
+
+## Note
+
+this lib for specific use by default style.
+
+if you interst Pm me XD.
+
+## Authors
+
+- [@Abduo Ghazaly](https://github.com/abduoghazaly)
