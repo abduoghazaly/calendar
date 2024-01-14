@@ -5,6 +5,7 @@ import { animate, style, transition, trigger } from '@angular/animations';
 import { CalendarWeeksComponent } from './calendar-weeks/calendar-weeks.component';
 import { CalendarYearsComponent } from './calendar-years/calendar-years.component';
 import { CalendarStyle } from '../model/enum';
+import { CalendarService } from './calendar.service';
 
 @Component({
   selector: 'gh-calendar',
@@ -26,7 +27,12 @@ import { CalendarStyle } from '../model/enum';
   ],
 })
 export class CalendarComponent {
-  @Input('config') config!: CalendarConfig;
+  @Input('config') set config(value: CalendarConfig) {
+    this._config = this.CalendarService.deepMergeObjects(this._config, value);
+    this._config = this.CalendarService.updateConfig(this._config);
+    console.log(this._config);
+  }
+
   @Output() changeCalendarStyleEventEmitter = new EventEmitter<CalendarStyle>();
 
   @Output() changeCalendarDateEmitter = new EventEmitter<string>();
@@ -38,60 +44,25 @@ export class CalendarComponent {
   isCalendarShow: boolean = true;
   calendarStyleEnum = CalendarStyle;
 
-  constructor() {}
+  _config = this.CalendarService.initConfig;
+
+  constructor(private CalendarService: CalendarService) {}
 
   changeCalenderStyle(event: CalendarStyle, months?: number, years?: number) {
-    this.config.showStyle = event;
-    if (months != undefined) this.config.date!.targetMonth = months;
-    if (years) this.config.date!.targetYear = years;
+    this._config.showStyle = event;
+    if (months != undefined) this._config.date!.targetMonth = months;
+    if (years) this._config.date!.targetYear = years;
 
     this.changeCalendarStyleEventEmitter.emit(event);
     this.changeCalendarMonthEmitter.emit(months);
   }
 
   changeCalendarTime(target: 'after' | 'before') {
-    if (this.config.showStyle == this.calendarStyleEnum.weeks) {
-      if (target == 'after') {
-        if (
-          this.config.date!.targetMonth != undefined &&
-          this.config.date!.targetMonth == 11
-        ) {
-          this.config.date!.targetYear =
-            (this.config.date?.targetYear ?? new Date().getFullYear()) + 1;
-          this.config.date!.targetMonth = 0;
-        } else {
-          this.config.date!.targetMonth =
-            (this.config.date?.targetMonth ?? new Date().getMonth()) + 1;
-        }
-      }
-
-      if (target == 'before') {
-        if (
-          this.config.date!.targetMonth != undefined &&
-          this.config.date!.targetMonth == 0
-        ) {
-          this.config.date!.targetYear =
-            (this.config.date?.targetYear ?? new Date().getFullYear()) - 1;
-          this.config.date!.targetMonth = 11;
-        } else {
-          this.config.date!.targetMonth =
-            (this.config.date?.targetMonth ?? new Date().getMonth()) - 1;
-        }
-      }
-    }
-    if (this.config.showStyle == this.calendarStyleEnum.years) {
-      if (target == 'after') {
-        this.config.date!.targetYear =
-          (this.config.date?.targetYear ?? new Date().getFullYear()) + 1;
-      }
-
-      if (target == 'before') {
-        this.config.date!.targetYear =
-          (this.config.date?.targetYear ?? new Date().getFullYear()) - 1;
-      }
-    }
-
-    this.changeCalendarDateEmitter.emit(target);
+    this.CalendarService.changeCalendarTime(
+      target,
+      this._config,
+      this.changeCalendarDateEmitter
+    );
   }
 
   eventBTNClicked(event: string) {

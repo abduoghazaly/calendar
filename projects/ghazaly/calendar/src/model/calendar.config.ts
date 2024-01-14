@@ -2,9 +2,6 @@ import { CalendarStyle } from './enum';
 
 export interface CalendarConfig {
   showStyle: CalendarStyle;
-
-  events?: CalendarEvents[];
-
   date?: {
     targetDay?: number;
     targetYear?: number;
@@ -104,8 +101,6 @@ export interface CalendarConfig {
     };
   };
 }
-
-export interface CalendarEvents {}
 
 export interface CalendarMonths {
   title?: string;

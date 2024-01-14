@@ -1,44 +1,44 @@
 <div
   class="gh-calendar"
-  [ngStyle]="{ 'font-family': config.theme?.fontFamily }"
+  [ngStyle]="{ 'font-family': _config.theme?.fontFamily }"
 >
   <div
     class="calendar-container-control"
-    *ngIf="config.controlBTN?.showControlBTN"
+    *ngIf="_config.controlBTN?.showControlBTN"
   >
     <div
       class="calendar-container-control-title"
       [ngStyle]="{
-  width: config.header?.titleOptions?.Width,}"
+  width: _config.header?.titleOptions?.Width,}"
     ></div>
     <div
       class="calendar-container-control-BTN"
       [ngStyle]="{
-        width: config.controlBTN?.btn?.width ?? 'auto',
-        padding: config.controlBTN?.btn?.padding,
-        'background-color': config.controlBTN?.btn?.backgroundColor,
-        'border-radius': config.controlBTN?.btn?.borderRadius
+        width: _config.controlBTN?.btn?.width ?? 'auto',
+        padding: _config.controlBTN?.btn?.padding,
+        'background-color': _config.controlBTN?.btn?.backgroundColor,
+        'border-radius': _config.controlBTN?.btn?.borderRadius
       }"
       (click)="isCalendarShow = !isCalendarShow"
     >
       <div
         class="calendar-container-control-BTN-title"
         [ngStyle]="{
-          color: config.controlBTN?.btn?.titleOption?.color,
-          'font-size': config.controlBTN?.btn?.titleOption?.fontSize,
-          'font-weight': config.controlBTN?.btn?.titleOption?.fontWeight
+          color: _config.controlBTN?.btn?.titleOption?.color,
+          'font-size': _config.controlBTN?.btn?.titleOption?.fontSize,
+          'font-weight': _config.controlBTN?.btn?.titleOption?.fontWeight
         }"
       >
-        {{ config.controlBTN?.btn?.titleOption?.title }}
+        {{ _config.controlBTN?.btn?.titleOption?.title }}
       </div>
       <div
         class="calendar-container-control-BTN-icon"
-        [ngStyle]="{ padding: config.controlBTN?.btn?.iconOption?.padding }"
+        [ngStyle]="{ padding: _config.controlBTN?.btn?.iconOption?.padding }"
       >
         <img
           class="animationEaseOut"
           [ngClass]="{ reverseScale: !isCalendarShow }"
-          [src]="config.controlBTN?.btn?.iconOption?.icon"
+          [src]="_config.controlBTN?.btn?.iconOption?.icon"
           alt="control btn"
         />
       </div>
@@ -53,45 +53,45 @@
     <div
       class="calendar-header"
       [ngStyle]="{
-        height: config.header?.height,
-        'border-top-color': config.header?.borderTopColor,
-        'border-top-width': config.header?.borderTopWidth
+        height: _config.header?.height,
+        'border-top-color': _config.header?.borderTopColor,
+        'border-top-width': _config.header?.borderTopWidth
       }"
     >
       <div
         class="calendar-header-title"
         [ngStyle]="{
-          width: config.header?.titleOptions?.Width,
-          'font-size': config.header?.titleOptions?.fontSize,
-          'font-weight': config.header?.titleOptions?.fontWeight,
-          color: config.header?.titleOptions?.color
+          width: _config.header?.titleOptions?.Width,
+          'font-size': _config.header?.titleOptions?.fontSize,
+          'font-weight': _config.header?.titleOptions?.fontWeight,
+          color: _config.header?.titleOptions?.color
         }"
       >
-        {{ config.header?.titleOptions?.title }}
+        {{ _config.header?.titleOptions?.title }}
       </div>
       <div class="calendar-header-year">
         <div
           class="calendar-header-year-beforeBTN"
-          [ngStyle]="{ padding: config.header?.beforeBTN?.padding }"
+          [ngStyle]="{ padding: _config.header?.beforeBTN?.padding }"
           (click)="changeCalendarTime('before')"
         >
-          <img [src]="config.header?.beforeBTN?.icon" alt="beforeBTN" />
+          <img [src]="_config.header?.beforeBTN?.icon" alt="beforeBTN" />
         </div>
         <div
           class="calendar-header-year-title"
           (click)="changeCalenderStyle(calendarStyleEnum.years)"
         >
-          <ng-container *ngIf="config.showStyle == calendarStyleEnum.weeks">
-            {{  config.yearsStyleOptions?.months?.[config.date?.targetMonth ?? 0]?.title  }}
+          <ng-container *ngIf="_config.showStyle == calendarStyleEnum.weeks">
+            {{  _config.yearsStyleOptions?.months?.[_config.date?.targetMonth ?? 0]?.title  }}
           </ng-container>
-          {{ config.date?.targetYear }}
+          {{ _config.date?.targetYear }}
         </div>
         <div
           class="calendar-header-year-afterBTN"
-          [ngStyle]="{ padding: config.header?.afterBTN?.padding }"
+          [ngStyle]="{ padding: _config.header?.afterBTN?.padding }"
           (click)="changeCalendarTime('after')"
         >
-          <img [src]="config.header?.afterBTN?.icon" alt="afterBTN" />
+          <img [src]="_config.header?.afterBTN?.icon" alt="afterBTN" />
         </div>
       </div>
     </div>
@@ -100,10 +100,10 @@
       <div
         class="calendar-week"
         @calendarControlAnimation
-        *ngIf="config.showStyle == calendarStyleEnum.weeks"
+        *ngIf="_config.showStyle == calendarStyleEnum.weeks"
       >
         <lib-calendar-weeks
-          [config]="config"
+          [config]="_config"
           (eventBTNClicked)="eventBTNClicked($event)"
           (weekBTNClicked)="weekBTNClicked($event)"
         ></lib-calendar-weeks>
@@ -111,10 +111,10 @@
       <div
         class="calendar-year"
         @calendarControlAnimation
-        *ngIf="config.showStyle == calendarStyleEnum.years"
+        *ngIf="_config.showStyle == calendarStyleEnum.years"
       >
         <lib-calendar-years
-          [config]="config"
+          [config]="_config"
           (monthSelected)="changeCalenderStyle(calendarStyleEnum.weeks, $event)"
         ></lib-calendar-years>
       </div>

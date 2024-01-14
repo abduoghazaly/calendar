@@ -16,87 +16,53 @@ export class AppComponent {
 
   calendarConfig: CalendarConfig = {
     showStyle: CalendarStyle.weeks,
-    date: {
-      targetDay: 16,
-      targetMonth: 0,
-      targetYear: 2024,
-      targetDate: new Date('2024-01-16T00:00:00.000Z'),
-    },
-
     yearsStyleOptions: {
       months: [
         {
           title: 'January',
-          subTitle: ['3 sessions', '2 work shops'],
+          subTitle: [],
         },
         {
           title: 'February',
-          subTitle: ['3 sessions'],
+          subTitle: [],
         },
         {
           title: 'March',
-          subTitle: ['3 sessions'],
+          subTitle: [],
         },
         {
           title: 'April',
-          subTitle: ['3 sessions'],
+          subTitle: [],
         },
         { title: 'May' },
         {
           title: 'June',
-          subTitle: ['358 sessions', '2124 work shops', '999 meeting'],
+          subTitle: [],
         },
-        { title: 'July', subTitle: [''] },
+        { title: 'July', subTitle: [] },
         {
           title: 'August',
-          subTitle: ['4 work shops'],
+          subTitle: [],
         },
         {
           title: 'September',
-          subTitle: ['4 work shops'],
+          subTitle: [],
         },
         {
           title: 'October',
-          subTitle: ['3 sessions', '2 work shops', '999 meeting'],
+          subTitle: [],
         },
         {
           title: 'November',
-          subTitle: ['3 sessions', '2 work shops', '999 meeting'],
+          subTitle: [],
         },
         {
           title: 'December',
-          subTitle: ['999 meeting'],
+          subTitle: [],
         },
       ],
     },
-
     monthsStyleOption: {
-      timeFrame: [
-        { title: '00:00', hour: '00' },
-        { title: '01:00', hour: '01' },
-        { title: '02:00', hour: '02' },
-        { title: '03:00', hour: '03' },
-        { title: '04:00', hour: '04' },
-        { title: '05:00', hour: '05' },
-        { title: '06:00', hour: '06' },
-        { title: '07:00', hour: '07' },
-        { title: '08:00', hour: '08' },
-        { title: '09:00', hour: '09' },
-        { title: '10:00', hour: '10' },
-        { title: '11:00', hour: '11' },
-        { title: '12:00', hour: '12' },
-        { title: '13:00', hour: '13' },
-        { title: '14:00', hour: '14' },
-        { title: '15:00', hour: '15' },
-        { title: '16:00', hour: '16' },
-        { title: '17:00', hour: '17' },
-        { title: '18:00', hour: '18' },
-        { title: '19:00', hour: '19' },
-        { title: '20:00', hour: '20' },
-        { title: '21:00', hour: '21' },
-        { title: '22:00', hour: '22' },
-        { title: '23:00', hour: '23' },
-      ],
       weeks: [
         {
           date: '2024-01-14T00:00:00.000Z',
@@ -179,63 +145,6 @@ export class AppComponent {
         { date: '2024-01-19T00:00:00.000Z', title: 'Thursday', events: {} },
         { date: '2024-01-20T00:00:00.000Z', title: 'Friday', events: {} },
       ],
-
-      timeFrameStyle: {
-        widthRatio: 2,
-      },
-    },
-
-    theme: {
-      fontFamily: 'Arial, "Helvetica Neue", Helvetica, sans-serif',
-      colors: {
-        primary: '#3D6BE5',
-        secondary: '#B286FD',
-      },
-    },
-
-    controlBTN: {
-      showControlBTN: true,
-      btn: {
-        titleOption: {
-          title: 'MY Calendar',
-        },
-        iconOption: {
-          icon: '../assets/images/chevron-down.svg',
-        },
-      },
-    },
-
-    header: {
-      borderTopColor: '#D9DDE0',
-      borderTopWidth: '1px',
-      height: '56px',
-      titleOptions: {
-        title: 'My Calendar',
-        Width: '150px',
-        fontSize: '24px',
-        fontWeight: 'bold',
-        color: '#3D6BE5',
-      },
-      beforeBTN: {
-        icon: '../assets/images/chevron-left.svg',
-        color: '#3D6BE5',
-        padding: '5px',
-      },
-      afterBTN: {
-        icon: '../assets/images/chevron-right.svg',
-        color: '#3D6BE5',
-        padding: '5px',
-      },
-    },
-    side: {
-      afterBTN: {
-        icon: '../assets/images/chevron-down.svg',
-        padding: '0',
-      },
-      beforeBTN: {
-        icon: '../assets/images/chevron-up.svg',
-        padding: '0',
-      },
     },
   };
 
