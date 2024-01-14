@@ -1,27 +1,188 @@
-# Calendar
+# Calendar TimeLine
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.0.3.
+Calendar with time line for meetings and appointments.
 
-## Development server
+## Usage
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+**Component**
 
-## Code scaffolding
+```
+  <gh-calendar
+    [config]="calendarConfig"
+    (changeCalendarStyleEventEmitter)="calendarStyleUpdate($event)"
+    (changeCalendarDateEmitter)="calendarDateUpdate($event)"
+    (changeCalendarMonthEmitter)="changeCalendarMonth($event)"
+    (changeCalendarWeekEmitter)="changeCalendarWeek($event)"
+    (calenderEventClickedEmitter)="calenderEventClicked($event)"
+  >
+  </gh-calendar>
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+```
 
-## Build
+**Module**
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+```
+@Component({
+...
+  imports: [CalendarComponent , ...],
+})
 
-## Running unit tests
+```
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+**Config**
 
-## Running end-to-end tests
+```
+export interface CalendarConfig {
+  showStyle: CalendarStyle; // view style [ Years,Weeks ]
+  date?: {
+    targetDay?: number;
+    targetYear?: number;
+    targetMonth?: number;
+    targetDate?: Date; // must be first day of the week
+  };
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+  yearsStyleOptions?: {
+    months?: CalendarMonths[]; // length must be 12
+    monthsStyle?: {
+      border?: string;
+      borderRadius?: string;
+    };
+    monthsTitleStyle?: {
+      color?: string;
+      fontSize?: string;
+      fontStyle?: string;
+      fontWeight?: string;
+    };
+    monthsSubTitleStyle?: {
+      color?: string;
+      fontSize?: string;
+      fontStyle?: string;
+      fontWeight?: string;
+    };
+  };
+  monthsStyleOption?: {
+    weeks?: weeks[]; // length must be 7
+    timeFrame?: timeFrame[]; must be every hour
+    sideBarStyle?: {
+      width?: string;
+    };
+    timeFrameStyle?: {
+      widthRatio?: number; // expands the timeline width
+    };
+  };
 
-## Further help
+  theme?: {
+    fontFamily?: string;
+    colors?: {
+      primary?: string;
+      secondary?: string;
+    };
+  };
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+  controlBTN?: {
+    showControlBTN?: boolean;
+    btn?: {
+      width?: string;
+      padding?: string;
+      borderRadius?: string;
+      backgroundColor?: string;
+      titleOption?: {
+        title?: string;
+        color?: string;
+        fontSize?: string;
+        fontWeight?: string;
+      };
+      iconOption?: {
+        icon?: string;
+        padding?: string; // '5px 0 0 10px'
+      };
+    };
+  };
+
+  header?: {
+    borderTopColor?: string;
+    borderTopWidth?: string;
+
+    height?: string;
+    titleOptions?: {
+      title?: string;
+      Width?: string;
+      fontSize?: string;
+      fontWeight?: string;
+      color?: string;
+    };
+    beforeBTN?: {
+      icon?: string;
+      color?: string;
+      padding?: string;
+    };
+    afterBTN?: {
+      icon?: string;
+      color?: string;
+      padding?: string;
+    };
+  };
+  side?: {
+    beforeBTN?: {
+      icon?: string;
+      padding?: string;
+    };
+    afterBTN?: {
+      icon?: string;
+      padding?: string;
+    };
+  };
+}
+
+export interface CalendarMonths {
+  title?: string;
+  subTitle?: string[];
+}
+
+export interface timeFrame {
+  title?: string;
+  hour?: string;
+}
+export interface weeks {
+  title?: string;
+  date?: string;
+  events?: { [key: string]: weeksEvent };
+}
+
+export interface weeksEvent {
+  hour?: string;
+  min?: string;
+  durationInMin?: number;
+  isShowDetails?: boolean;
+  details?: {
+    title?: string;
+    image?: string;
+    name?: string;
+    start?: string;
+    end?: string;
+    bgColor?: string;
+    color?: string;
+    borderRadius?: string;
+    detailsColor?: string;
+    fontSize?: string;
+    fontWeight?: string;
+  };
+  btnStyle?: {
+    img?: string;
+    title?: string;
+    width?: string;
+    id?: string;
+  };
+}
+
+```
+
+## Note
+
+this lib for specific use by default style.
+
+if you interst Pm me XD.
+
+## Authors
+
+- [@Abduo Ghazaly](https://github.com/abduoghazaly)

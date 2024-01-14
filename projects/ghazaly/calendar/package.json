@@ -1,6 +1,23 @@
 {
   "name": "@ghazaly/calendar",
-  "version": "0.0.1",
+  "version": "1.0.0",
+  "author": {
+    "name": "Abduo Ghazaly"
+  },
+  "keywords": [
+    "angular",
+    "timeline",
+    "javascript",
+    "angular-timeline",
+    "gh-calendar",
+    "calendar-timeline",
+    "calendar"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/abduoghazaly/calendar"
+  },
+  "description": "Calendar timeline component for angular",
   "peerDependencies": {
     "@angular/common": "^17.0.0",
     "@angular/core": "^17.0.0"
