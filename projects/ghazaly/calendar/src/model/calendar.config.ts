@@ -9,6 +9,7 @@ export interface CalendarConfig {
     targetDay?: number;
     targetYear?: number;
     targetMonth?: number;
+    targetDate?: Date;
   };
 
   yearsStyleOptions?: {
@@ -89,6 +90,16 @@ export interface CalendarConfig {
     afterBTN?: {
       icon?: string;
       color?: string;
+      padding?: string;
+    };
+  };
+  side?: {
+    beforeBTN?: {
+      icon?: string;
+      padding?: string;
+    };
+    afterBTN?: {
+      icon?: string;
       padding?: string;
     };
   };

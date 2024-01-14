@@ -1,8 +1,10 @@
 <div class="test">
   <gh-calendar
     [config]="calendarConfig"
-    (changeCalendarDateEventEmitter)="calendarDateUpdate($event)"
     (changeCalendarStyleEventEmitter)="calendarStyleUpdate($event)"
+    (changeCalendarDateEmitter)="calendarDateUpdate($event)"
+    (changeCalendarMonthEmitter)="changeCalendarMonth($event)"
+    (changeCalendarWeekEmitter)="changeCalendarWeek($event)"
     (calenderEventClickedEmitter)="calenderEventClicked($event)"
   ></gh-calendar>
 </div>

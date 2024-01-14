@@ -28,7 +28,11 @@ import { CalendarStyle } from '../model/enum';
 export class CalendarComponent {
   @Input('config') config!: CalendarConfig;
   @Output() changeCalendarStyleEventEmitter = new EventEmitter<CalendarStyle>();
-  @Output() changeCalendarDateEventEmitter = new EventEmitter<string>();
+
+  @Output() changeCalendarDateEmitter = new EventEmitter<string>();
+  @Output() changeCalendarMonthEmitter = new EventEmitter<number>();
+
+  @Output() changeCalendarWeekEmitter = new EventEmitter<string>();
   @Output() calenderEventClickedEmitter = new EventEmitter<string>();
 
   isCalendarShow: boolean = true;
@@ -42,7 +46,7 @@ export class CalendarComponent {
     if (years) this.config.date!.targetYear = years;
 
     this.changeCalendarStyleEventEmitter.emit(event);
-    this.emitCalendarDate();
+    this.changeCalendarMonthEmitter.emit(months);
   }
 
   changeCalendarTime(target: 'after' | 'before') {
@@ -86,21 +90,15 @@ export class CalendarComponent {
           (this.config.date?.targetYear ?? new Date().getFullYear()) - 1;
       }
     }
-    this.emitCalendarDate();
-  }
 
-  emitCalendarDate() {
-    let date = new Date();
-    date.setFullYear(this.config.date?.targetYear ?? new Date().getFullYear());
-    date.setMonth(this.config.date?.targetMonth ?? new Date().getMonth());
-    date.setDate(this.config.date?.targetDay ?? new Date().getDate());
-
-    this.changeCalendarDateEventEmitter.emit(date.toISOString());
+    this.changeCalendarDateEmitter.emit(target);
   }
 
   eventBTNClicked(event: string) {
     this.calenderEventClickedEmitter.emit(event);
   }
-}
 
-// new Date(new Date().setDate( new Date().getDate() - new Date().getDay())).toISOString()
+  weekBTNClicked(event: string) {
+    this.changeCalendarWeekEmitter.emit(event);
+  }
+}

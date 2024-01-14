@@ -17,9 +17,10 @@ export class AppComponent {
   calendarConfig: CalendarConfig = {
     showStyle: CalendarStyle.weeks,
     date: {
-      targetDay: 11,
+      targetDay: 16,
       targetMonth: 0,
       targetYear: 2024,
+      targetDate: new Date('2024-01-16T00:00:00.000Z'),
     },
 
     yearsStyleOptions: {
@@ -98,7 +99,7 @@ export class AppComponent {
       ],
       weeks: [
         {
-          date: '2024-01-07T00:00:00.000Z',
+          date: '2024-01-14T00:00:00.000Z',
           title: 'Saturday',
           events: {
             '16': {
@@ -125,7 +126,7 @@ export class AppComponent {
           },
         },
         {
-          date: '2024-01-08T00:00:00.000Z',
+          date: '2024-01-15T00:00:00.000Z',
           title: 'Sunday',
           events: {
             '05': {
@@ -172,11 +173,11 @@ export class AppComponent {
             },
           },
         },
-        { date: '2024-01-09T00:00:00.000Z', title: 'Monday', events: {} },
-        { date: '2024-01-10T00:00:00.000Z', title: 'Tuesday', events: {} },
-        { date: '2024-01-11T00:00:00.000Z', title: 'Wednesday', events: {} },
-        { date: '2024-01-12T00:00:00.000Z', title: 'Thursday', events: {} },
-        { date: '2024-01-13T00:00:00.000Z', title: 'Friday', events: {} },
+        { date: '2024-01-16T00:00:00.000Z', title: 'Monday', events: {} },
+        { date: '2024-01-17T00:00:00.000Z', title: 'Tuesday', events: {} },
+        { date: '2024-01-18T00:00:00.000Z', title: 'Wednesday', events: {} },
+        { date: '2024-01-19T00:00:00.000Z', title: 'Thursday', events: {} },
+        { date: '2024-01-20T00:00:00.000Z', title: 'Friday', events: {} },
       ],
 
       timeFrameStyle: {
@@ -226,13 +227,32 @@ export class AppComponent {
         padding: '5px',
       },
     },
+    side: {
+      afterBTN: {
+        icon: '../assets/images/chevron-down.svg',
+        padding: '0',
+      },
+      beforeBTN: {
+        icon: '../assets/images/chevron-up.svg',
+        padding: '0',
+      },
+    },
   };
 
   calendarStyleUpdate(value: any) {
     console.log('style', value);
   }
+
   calendarDateUpdate(value: any) {
     console.log('date', value);
+  }
+
+  changeCalendarMonth(value: any) {
+    console.log('Month', value);
+  }
+
+  changeCalendarWeek(value: any) {
+    console.log('Week', value);
   }
 
   calenderEventClicked(value: any) {

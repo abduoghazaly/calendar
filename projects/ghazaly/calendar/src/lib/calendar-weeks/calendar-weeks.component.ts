@@ -24,9 +24,14 @@ import { animate, style, transition, trigger } from '@angular/animations';
 })
 export class CalendarWeeksComponent {
   @Input('config') config!: CalendarConfig;
-  @Output('eventBTNClicked') eventBTNClicked = new EventEmitter<string>();
+  @Output('eventBTNClicked') eventBTNClickedEmitter =
+    new EventEmitter<string>();
+  @Output('weekBTNClicked') weekBTNClickedEmitter = new EventEmitter<
+    'before' | 'after'
+  >();
 
   timeNow: Date = new Date();
+  isChangeWeekBTN: boolean = false;
 
   constructor() {
     setInterval(() => {
@@ -34,16 +39,32 @@ export class CalendarWeeksComponent {
     }, 10000);
   }
 
-  eventBTN(event: MouseEvent, eventId?: string) {
-    event.stopPropagation();
-    this.eventBTNClicked.emit(eventId);
-  }
-
   isTimeNow(time: timeFrame) {
+    let isDay = this.config.monthsStyleOption?.weeks?.some((value) =>
+      value?.date
+        ? this.timeNow.getDate() == new Date(value?.date).getDate()
+        : false
+    );
+
     return (
       this.timeNow.getFullYear() == this.config.date?.targetYear &&
       this.timeNow.getMonth() == this.config.date?.targetMonth &&
-      this.timeNow.getHours() == +(time?.hour ?? 0)
+      this.timeNow.getHours() == +(time?.hour ?? 0) &&
+      isDay
     );
+  }
+
+  isToDay(date: string) {
+    if (date) return this.timeNow.getDate() == new Date(date).getDate();
+    else return false;
+  }
+
+  eventBTN(event: MouseEvent, eventId?: string) {
+    event.stopPropagation();
+    this.eventBTNClickedEmitter.emit(eventId);
+  }
+
+  weekBTNClicked(target: 'before' | 'after') {
+    this.weekBTNClickedEmitter.emit(target);
   }
 }

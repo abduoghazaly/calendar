@@ -48,7 +48,9 @@
     </ng-container>
   </div>
 
-  <ng-container *ngFor="let day of config.monthsStyleOption?.weeks">
+  <ng-container
+    *ngFor="let day of config.monthsStyleOption?.weeks; let i = index"
+  >
     <div
       class="calendar-week-row-container"
       [ngStyle]="{
@@ -67,10 +69,14 @@
       ></div>
       <div
         class="calendar-week-side-title-grid side-sticky"
+        (mouseenter)="isChangeWeekBTN = true"
+        (mouseleave)="isChangeWeekBTN = false"
         [ngStyle]="{
           width: config.monthsStyleOption?.sideBarStyle?.width
             ? config.monthsStyleOption?.sideBarStyle?.width + 'px'
-            : '132px'
+            : '132px',
+          color: isToDay(day?.date ?? '') ? '#fff' : '#000',
+          'background-color':  isToDay(day?.date ?? '') ? this.config.theme?.colors?.primary : '#fff',
         }"
       >
         <span>
@@ -79,6 +85,31 @@
         <span>
           {{ day.date | date : "d/M" }}
         </span>
+
+        <div
+          class="calendar-week-side-before-btn"
+          *ngIf="isChangeWeekBTN && i == 0"
+          [ngStyle]="{
+            padding: config.side?.beforeBTN?.padding,
+            'background-color': config.theme?.colors?.secondary
+          }"
+          (click)="weekBTNClicked('before')"
+        >
+          <img [src]="config.side?.beforeBTN?.icon" alt="side before btn" />
+        </div>
+        <div
+          class="calendar-week-side-after-btn"
+          *ngIf="
+            isChangeWeekBTN && i + 1 == config.monthsStyleOption?.weeks?.length
+          "
+          [ngStyle]="{
+            padding: config.side?.afterBTN?.padding,
+            'background-color': config.theme?.colors?.secondary
+          }"
+          (click)="weekBTNClicked('after')"
+        >
+          <img [src]="config.side?.afterBTN?.icon" alt="side after btn" />
+        </div>
       </div>
 
       <ng-container *ngFor="let time of config.monthsStyleOption?.timeFrame">
