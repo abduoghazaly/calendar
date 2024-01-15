@@ -129,7 +129,7 @@ export class CalendarService {
           title: 'Calendar',
         },
         iconOption: {
-          icon: '../../assets/images/chevron-down.svg',
+          icon: 'assets/images/chevron-down.svg',
         },
       },
     },
@@ -146,23 +146,23 @@ export class CalendarService {
         color: '#3D6BE5',
       },
       beforeBTN: {
-        icon: '../../assets/images/chevron-left.svg',
+        icon: 'assets/images/chevron-left.svg',
         color: '#3D6BE5',
         padding: '5px',
       },
       afterBTN: {
-        icon: '../../assets/images/chevron-right.svg',
+        icon: 'assets/images/chevron-right.svg',
         color: '#3D6BE5',
         padding: '5px',
       },
     },
     side: {
       afterBTN: {
-        icon: '../../assets/images/chevron-down.svg',
+        icon: 'assets/images/chevron-down.svg',
         padding: '0',
       },
       beforeBTN: {
-        icon: '../../assets/images/chevron-up.svg',
+        icon: 'assets/images/chevron-up.svg',
         padding: '0',
       },
     },

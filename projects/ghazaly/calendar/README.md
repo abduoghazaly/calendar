@@ -1,8 +1,52 @@
 # Calendar TimeLine
 
 Calendar with time line for meetings and appointments.
+| version | angular |
+| --------- | -------- |
+| 1.x | 17.x |
 
 ## Usage
+
+**Import**
+
+```
+  npm i ghazaly-calendar
+```
+
+**app.config**
+
+add provideAnimations() for ApplicationConfig
+
+```
+  import { provideAnimations } from '@angular/platform-browser/animations';
+  providers: [ provideAnimations(), ...],
+```
+
+**angular.json**
+
+add assets for package
+
+```
+"assets":
+    [
+      {
+        "glob": "**/*",
+        "input": "node_modules/ghazaly-calendar/assets",
+        "output": "/assets/"
+      },
+      ...
+    ]
+```
+
+**Module**
+
+```
+@Component({
+...
+  imports: [CalendarComponent , ...],
+})
+
+```
 
 **Component**
 
@@ -16,16 +60,6 @@ Calendar with time line for meetings and appointments.
     (calenderEventClickedEmitter)="calenderEventClicked($event)"
   >
   </gh-calendar>
-
-```
-
-**Module**
-
-```
-@Component({
-...
-  imports: [CalendarComponent , ...],
-})
 
 ```
 
