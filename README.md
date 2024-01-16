@@ -3,7 +3,7 @@
 Calendar with time line for meetings and appointments.
 | version | angular |
 | --------- | -------- |
-| 1.x | 17.x |
+| 1.x | 16.x |
 
 ## Usage
 

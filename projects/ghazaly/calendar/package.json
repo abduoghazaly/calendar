@@ -1,6 +1,6 @@
 {
   "name": "ghazaly-calendar",
-  "version": "1.0.16",
+  "version": "1.0.17",
   "author": {
     "name": "Abduo Ghazaly"
   },
@@ -19,8 +19,8 @@
   },
   "description": "Calendar timeline component for angular",
   "peerDependencies": {
-    "@angular/common": "^17.0.9",
-    "@angular/core": "^17.0.9"
+    "@angular/common": "^16.2.12",
+    "@angular/core": "^16.2.12"
   },
   "dependencies": {
     "tslib": "^2.3.0"
