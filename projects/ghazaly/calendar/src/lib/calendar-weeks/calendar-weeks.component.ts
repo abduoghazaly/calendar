@@ -1,5 +1,12 @@
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  EventEmitter,
+  Input,
+  Output,
+  ViewChild,
+} from '@angular/core';
 import { CalendarConfig, timeFrame } from '../../public-api';
 import { animate, style, transition, trigger } from '@angular/animations';
 
@@ -30,6 +37,8 @@ export class CalendarWeeksComponent {
     'before' | 'after'
   >();
 
+  @ViewChild('calendarWeekContainer') calendarWeekContainer!: ElementRef;
+
   timeNow: Date = new Date();
   isChangeWeekBTN: boolean = false;
 
@@ -37,21 +46,33 @@ export class CalendarWeeksComponent {
     setInterval(() => {
       this.timeNow = new Date();
     }, 10000);
+
+    setTimeout(() => {
+      this.calendarWeekContainer.nativeElement.scrollTo(
+        this.timeNow.getHours() *
+          60 *
+          (this.config.monthsStyleOption?.timeFrameStyle?.widthRatio ?? 1) -
+          this.calendarWeekContainer.nativeElement.clientWidth / 2 +
+          60 * (this.config.monthsStyleOption?.timeFrameStyle?.widthRatio ?? 1),
+        0
+      );
+    }, 1000);
   }
 
-  isTimeNow(time: timeFrame) {
+  isTimeNow(time: timeFrame): boolean {
     let isDay = this.config.monthsStyleOption?.weeks?.some((value) =>
       value?.date
         ? this.timeNow.getDate() == new Date(value?.date).getDate()
         : false
     );
+    let isTimeNow =
+      (this.timeNow.getFullYear() == this.config.date?.targetYear &&
+        this.timeNow.getMonth() == this.config.date?.targetMonth &&
+        this.timeNow.getHours() == +(time?.hour ?? 0) &&
+        isDay) ??
+      false;
 
-    return (
-      this.timeNow.getFullYear() == this.config.date?.targetYear &&
-      this.timeNow.getMonth() == this.config.date?.targetMonth &&
-      this.timeNow.getHours() == +(time?.hour ?? 0) &&
-      isDay
-    );
+    return isTimeNow;
   }
 
   isToDay(date: string) {

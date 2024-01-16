@@ -38,6 +38,8 @@ add assets for package
     ]
 ```
 
+you can add custom icons in configs and remove assets import
+
 **Module**
 
 ```

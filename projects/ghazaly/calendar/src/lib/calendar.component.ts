@@ -30,7 +30,6 @@ export class CalendarComponent {
   @Input('config') set config(value: CalendarConfig) {
     this._config = this.CalendarService.deepMergeObjects(this._config, value);
     this._config = this.CalendarService.updateConfig(this._config);
-    console.log(this._config);
   }
 
   @Output() changeCalendarStyleEventEmitter = new EventEmitter<CalendarStyle>();
