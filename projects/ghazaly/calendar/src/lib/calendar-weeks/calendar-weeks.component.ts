@@ -1,5 +1,7 @@
 import { CommonModule } from '@angular/common';
 import {
+  AfterViewInit,
+  ChangeDetectorRef,
   Component,
   ElementRef,
   EventEmitter,
@@ -29,7 +31,7 @@ import { animate, style, transition, trigger } from '@angular/animations';
     ]),
   ],
 })
-export class CalendarWeeksComponent {
+export class CalendarWeeksComponent implements AfterViewInit {
   @Input('config') config!: CalendarConfig;
   @Output('eventBTNClicked') eventBTNClickedEmitter =
     new EventEmitter<string>();
@@ -41,22 +43,16 @@ export class CalendarWeeksComponent {
 
   timeNow: Date = new Date();
   isChangeWeekBTN: boolean = false;
+  private isScrolled: boolean = false;
 
-  constructor() {
+  constructor(private ChangeDetectorRef: ChangeDetectorRef) {
     setInterval(() => {
       this.timeNow = new Date();
     }, 10000);
+  }
 
-    setTimeout(() => {
-      this.calendarWeekContainer.nativeElement.scrollTo(
-        this.timeNow.getHours() *
-          60 *
-          (this.config.monthsStyleOption?.timeFrameStyle?.widthRatio ?? 1) -
-          this.calendarWeekContainer.nativeElement.clientWidth / 2 +
-          60 * (this.config.monthsStyleOption?.timeFrameStyle?.widthRatio ?? 1),
-        0
-      );
-    }, 1000);
+  ngAfterViewInit(): void {
+    this.scrollToNow();
   }
 
   isTimeNow(time: timeFrame): boolean {
@@ -71,7 +67,7 @@ export class CalendarWeeksComponent {
         this.timeNow.getHours() == +(time?.hour ?? 0) &&
         isDay) ??
       false;
-
+    if (isTimeNow) this.isScrolled = true;
     return isTimeNow;
   }
 
@@ -87,5 +83,21 @@ export class CalendarWeeksComponent {
 
   weekBTNClicked(target: 'before' | 'after') {
     this.weekBTNClickedEmitter.emit(target);
+  }
+
+  scrollToNow() {
+    if (this.isScrolled) {
+      this.ChangeDetectorRef.detectChanges();
+      this.calendarWeekContainer.nativeElement.scrollTo(
+        this.timeNow.getHours() *
+          60 *
+          (this.config.monthsStyleOption?.timeFrameStyle?.widthRatio ?? 1) -
+          this.calendarWeekContainer.nativeElement.clientWidth / 2 +
+          60 * (this.config.monthsStyleOption?.timeFrameStyle?.widthRatio ?? 1),
+        0
+      );
+    }
+
+    this.isScrolled = false;
   }
 }
