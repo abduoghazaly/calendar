@@ -72,7 +72,12 @@ export class CalendarWeeksComponent implements AfterViewInit {
   }
 
   isToDay(date: string) {
-    if (date) return this.timeNow.getDate() == new Date(date).getDate();
+    if (date)
+      return (
+        this.timeNow.getDate() == new Date(date).getDate() &&
+        this.timeNow.getMonth() == new Date(date).getMonth() &&
+        this.timeNow.getFullYear() == new Date(date).getFullYear()
+      );
     else return false;
   }
 

@@ -6,7 +6,7 @@ export interface CalendarConfig {
     targetDay?: number;
     targetYear?: number;
     targetMonth?: number;
-    targetDate?: Date;
+    targetDate?: string;
   };
 
   yearsStyleOptions?: {

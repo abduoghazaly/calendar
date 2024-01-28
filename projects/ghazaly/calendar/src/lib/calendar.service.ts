@@ -14,7 +14,7 @@ export class CalendarService {
       targetDay: 1,
       targetMonth: 0,
       targetYear: 2024,
-      targetDate: new Date(),
+      targetDate: new Date().toISOString(),
     },
 
     yearsStyleOptions: {
@@ -200,6 +200,7 @@ export class CalendarService {
       targetMonth: new Date(newConfig.date?.targetDate ?? '').getMonth(),
       targetYear: new Date(newConfig.date?.targetDate ?? '').getFullYear(),
     };
+    console.log(newConfig);
 
     // if (!newConfig.yearsStyleOptions?.months)
 
